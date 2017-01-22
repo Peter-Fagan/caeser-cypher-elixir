@@ -1,12 +1,9 @@
 defmodule Caeser.Cipher do
 
   def encrypt(msg, shift) do
-    # convert msg to char_list
     msg
       |> to_char_list
-      # iterate over list apply shift mapping
       |> Enum.map(&shift_char(&1, shift))
-      # return list as a binary string
       |> List.to_string
   end
 
@@ -21,10 +18,18 @@ defmodule Caeser.Cipher do
   def calculate_mapping(base_letter, char, shift) do
     # find ASCII integer of the char and normalize it
     # by subtracting the size of the alphabet
-    normalize = &(&1 - 26)
+    # normalize = &(&1 - 26)
     # ensure shift number is within the alphabet size
-    shift_num = rem(shift, 26)
+    # shift_num = rem(shift, 26)
     # calculate the shifted value
-    base_letter + rem(char - normalize.(base_letter) - shift_num, 26)
+    base_letter + rem(char - (base_letter - 26) - rem(shift,26), 26)
   end
+
+  # def calculate_mapping(base_letter, char, shift, alphabet_size \\ 26) do
+  #   char + offset(shift)
+  # end
+
+  # def offset(shift) do
+
+  # end
 end
