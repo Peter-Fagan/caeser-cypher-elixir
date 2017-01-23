@@ -15,14 +15,10 @@ defmodule Caeser.Cipher do
     end
   end
 
-  def calculate_mapping(base_letter, char, shift) do
-    # find ASCII integer of the char and normalize it
-    # by subtracting the size of the alphabet
-    # normalize = &(&1 - 26)
-    # ensure shift number is within the alphabet size
-    # shift_num = rem(shift, 26)
-    # calculate the shifted value
-    base_letter + rem(char - (base_letter - 26) - rem(shift,26), 26)
+  # ASCII value for A is 65, a is 97
+
+  def calculate_mapping(base_letter, char, shift, alphabet_size \\ 26) do
+    base_letter + rem(char - (base_letter - alphabet_size) - rem(shift, alphabet_size), alphabet_size)
   end
 
   # def calculate_mapping(base_letter, char, shift, alphabet_size \\ 26) do
@@ -30,6 +26,5 @@ defmodule Caeser.Cipher do
   # end
 
   # def offset(shift) do
-
   # end
 end
